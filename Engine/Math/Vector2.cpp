@@ -2,7 +2,7 @@
 #include "Vector2.h"
 #include <cassert>
 
-Vector2::Vector2(int x, int y)
+Vector2::Vector2(float x, float y)
     : x(x), y(y)
 {
 }

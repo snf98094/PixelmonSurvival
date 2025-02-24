@@ -4,7 +4,7 @@
 
 int main()
 {
-	system("color 42");
+	//system("color 42");
 
 	CheckMemoryLeak();
 	//_CrtSetBreakAlloc(15124);

@@ -196,10 +196,8 @@ xcopy $(OutDir)\*.lib $(SolutionDir)\Lib\ /e /y</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor\Actor.cpp" />
-    <ClCompile Include="Actor\DrawableActor.cpp" />
     <ClCompile Include="Animation\AnimationClip.cpp" />
     <ClCompile Include="Animation\Animator.cpp" />
-    <ClCompile Include="Engine\Timer.cpp" />
     <ClCompile Include="Image\ImageText.cpp" />
     <ClCompile Include="Engine\Engine.cpp" />
     <ClCompile Include="Level\Level.cpp" />
@@ -216,11 +214,9 @@ xcopy $(OutDir)\*.lib $(SolutionDir)\Lib\ /e /y</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Actor.h" />
-    <ClInclude Include="Actor\DrawableActor.h" />
     <ClInclude Include="Animation\AnimationClip.h" />
     <ClInclude Include="Animation\Animator.h" />
     <ClInclude Include="Engine\Debug.h" />
-    <ClInclude Include="Engine\Timer.h" />
     <ClInclude Include="Image\ImageText.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="Engine\Engine.h" />

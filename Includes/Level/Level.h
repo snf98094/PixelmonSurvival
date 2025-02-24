@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Core.h"
 #include "RTTI.h"
 #include <vector>
@@ -28,11 +27,9 @@ public:
 	virtual void Draw();
 	virtual void LateUpdate(float deltaTime);
 
-	void ClearConsole();
-
 protected:
 	// 게임 공간에 배치되는 물체(액터) 배열.
-	std::vector<Actor*> actors;
+	vector<Actor*> actors;
 
 	// 추가 요청된 액터.
 	Actor* addRequestedActor = nullptr;

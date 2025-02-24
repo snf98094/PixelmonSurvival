@@ -40,7 +40,7 @@ public:
 	void AddActor(Actor* newActor);
 	void DestroyActor(Actor* targetActor);
 
-	void Draw(const Vector2& position, std::vector<std::vector<Color>>& image);
+	void Draw(const Vector2& position, vector<vector<Color>>& image);
 	void Draw(const Vector2& position, const wchar_t* image, Color color = Color::White);
 	void Draw(const Vector2& position, const wchar_t* image, int rightOffset, Color color = Color::White);
 

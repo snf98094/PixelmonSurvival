@@ -80,8 +80,6 @@ void Level::Update(float deltaTime)
 
 void Level::Draw()
 {
-	//ClearConsole();
-
 	for (Actor* actor : actors)
 	{
 		if (!actor->isActive || actor->isExpired)
@@ -110,24 +108,4 @@ void Level::LateUpdate(float deltaTime)
 
 		actors[i]->LateUpdate(deltaTime);
 	}
-}
-
-void Level::ClearConsole()
-{
-	// 콘솔 화면 크기 정보 가져오기
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
-	DWORD dwSize, dwWritten;
-
-	GetConsoleScreenBufferInfo(hConsole, &csbi);
-	dwSize = csbi.dwSize.X * csbi.dwSize.Y;
-	
-	// 콘솔 화면을 공백으로 채우기
-	FillConsoleOutputCharacter(hConsole, ' ', dwSize, { 0, 0 }, &dwWritten);
-	FillConsoleOutputAttribute(hConsole, csbi.wAttributes, dwSize, { 0, 0 }, &dwWritten);
-
-	// 커서를 화면 맨 위로 이동
-	SetConsoleCursorPosition(hConsole, { 0, 0 });
-
-	std::cout << dwSize;
 }

@@ -9,8 +9,32 @@ Player::Player(GameLevel* level)
 
 	// 가운데에서 시작.
 	position = Engine::Get().ScreenSize() / 2.0f;
-	warrior = new ImageText("Character/Warrior");
-	warrior->SetDrawingPosition(position);
+
+	// 기본 애니메이션 추가.
+	AnimationClip* idleClip = new AnimationClip(idle, 0.8f);
+	idleClip->SetPosition(position);
+	idleClip->AddImage(new ImageText("Character/Warrior_Idle01"), 0.0f);
+	idleClip->AddImage(new ImageText("Character/Warrior_Idle02"), 0.5f);
+	idleClip->SetLoop(true);
+	level->AddActor(idleClip);
+
+	// 이동 애니메이션 추가.
+	AnimationClip* moveClip = new AnimationClip(move, 0.6f);
+	moveClip->SetPosition(position);
+	moveClip->AddImage(new ImageText("Character/Warrior_Move01"), 0.0f);
+	moveClip->AddImage(new ImageText("Character/Warrior_Move02"), 0.2f);
+	moveClip->AddImage(new ImageText("Character/Warrior_Move03"), 0.4f);
+	moveClip->AddImage(new ImageText("Character/Warrior_Move04"), 0.6f);
+	moveClip->AddImage(new ImageText("Character/Warrior_Move05"), 0.8f);
+	moveClip->SetLoop(true);
+	level->AddActor(moveClip);
+
+	// 애니메이터에 클립 저장.
+	playerAnimator.AddClip(idleClip);
+	playerAnimator.AddClip(moveClip);
+
+	// 기본 애니메이션 실행.
+	SetState(PlayerState::Idle);
 }
 
 Player::~Player()
@@ -20,24 +44,70 @@ Player::~Player()
 
 void Player::Update(float deltaTime)
 {
-	if (Engine::Get().GetKey(VK_LEFT))
-		position.x = (float)position.x - (float)speed * deltaTime;
-	if (Engine::Get().GetKey(VK_RIGHT))
-		position.x = (float)position.x + (float)speed * deltaTime;
-	if (Engine::Get().GetKey(VK_UP))
-		position.y = (float)position.y - (float)speed * deltaTime;
-	if (Engine::Get().GetKey(VK_DOWN))
-		position.y = (float)position.y + (float)speed * deltaTime;
+	// 이동할 값.
+	Vector2 movePoint;
 
-	warrior->SetDrawingPosition(position);
+	if (Engine::Get().GetKey(VK_LEFT))
+	{
+		movePoint = Vector2(-1.0f, 0.0f);
+		// 반전 여부 적용.
+		playerAnimator.SetFlip(false);
+	}
+	if (Engine::Get().GetKey(VK_RIGHT))
+	{
+		movePoint = Vector2(1.0f, 0.0f);
+		// 반전 여부 적용.
+		playerAnimator.SetFlip(true);
+	}
+	if (Engine::Get().GetKey(VK_UP))
+		movePoint = Vector2(0.0f, -1.0f);
+	if (Engine::Get().GetKey(VK_DOWN))
+		movePoint = Vector2(0.0f, 1.0f);
+
+	if (movePoint != Vector2(0.0f, 0.0f))
+	{
+		// 위치 이동.
+		position = position + movePoint * speed * deltaTime;
+
+		// 플레이어 재생 위치 이동.
+		playerAnimator.SetPosition(position);
+
+		// 현재 상태가 이동이 아니라면 이동 상태로 변경.
+		if (animationClip != playerAnimator.GetClip(move))
+			SetState(PlayerState::Move);
+	}
+	else if (animationClip != playerAnimator.GetClip(idle))
+		// 기본 상태로 변경.
+		SetState(PlayerState::Idle);
 }
 
 void Player::Draw()
 {
-	warrior->Print();
+	
 }
 
 void Player::LateUpdate(float deltaTime)
 {
 	
+}
+
+void Player::SetState(PlayerState state)
+{
+	this->state = state;
+
+	switch (state)
+	{
+	case Player::PlayerState::Idle:
+		playerAnimator.Play(idle);
+		break;
+
+	case Player::PlayerState::Die:
+		break;
+
+	case Player::PlayerState::Move:
+		playerAnimator.Play(move);
+		break;
+	}
+
+	animationClip = playerAnimator.GetCurrentClip();
 }

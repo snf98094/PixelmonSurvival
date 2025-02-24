@@ -33,16 +33,10 @@
     <ClCompile Include="Math\Vector2.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Actor\DrawableActor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Image\ImageText.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Animation\AnimationClip.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Engine\Timer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Animation\Animator.cpp">
@@ -77,16 +71,10 @@
     <ClInclude Include="Math\Vector2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Actor\DrawableActor.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Image\ImageText.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Animation\AnimationClip.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Timer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Animation\Animator.h">

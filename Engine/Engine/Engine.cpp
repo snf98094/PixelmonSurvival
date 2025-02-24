@@ -24,8 +24,8 @@ Engine::Engine()
 
 	// 화면 지울 때 사용할 버퍼 초기화.
 	// 1. 버퍼 크기 할당.
-	int widthSize = 210;
-	int heightSize = 110;
+	int widthSize = 315;
+	int heightSize = 167;
 	int interval = 640;
 	int ratio = GetSystemMetrics(SM_CXSCREEN) / interval;
 
@@ -50,7 +50,7 @@ Engine::Engine()
 	SetConsoleMode(inputHandle, flag);
 
 	// std::cin/std::cout 연결 끊기.
-	std::ios::sync_with_stdio(false);
+	ios::sync_with_stdio(false);
 }
 
 Engine::~Engine()
@@ -156,7 +156,7 @@ void Engine::DestroyActor(Actor* targetActor)
 	targetActor->Destroy();
 }
 
-void Engine::Draw(const Vector2& position, std::vector<std::vector<Color>>& image)
+void Engine::Draw(const Vector2& position, vector<vector<Color>>& image)
 {
 	int sizeY = image.size();
 	for (int y = 0; y < sizeY; y++)
@@ -376,19 +376,19 @@ void Engine::ClearImageBuffer()
 		// 버퍼 덮어쓰기.
 		for (int x = 0; x < screenSize.x; ++x)
 		{
-			auto& buffer = imageBuffer[(y * (screenSize.x)) + x];
+			auto& buffer = imageBuffer[y * (int)screenSize.x + x];
 			buffer.Char.UnicodeChar = L'■';
 			buffer.Attributes = (int)Color::White;
 		}
 
 		// 각 줄 끝에 개행 문자 추가.
-		auto& buffer = imageBuffer[(y * (screenSize.x)) + screenSize.x];
+		auto& buffer = imageBuffer[y * (int)screenSize.x + (int)screenSize.x];
 		buffer.Char.UnicodeChar = L'\n';
 		buffer.Attributes = (int)Color::White;
 	}
 
 	// 마지막에 널 문자 추가.
-	auto& buffer = imageBuffer[(screenSize.x) * screenSize.y];
+	auto& buffer = imageBuffer[(int)screenSize.x * (int)screenSize.y];
 	buffer.Char.UnicodeChar = L'\0';
 	buffer.Attributes = (int)Color::White;
 }

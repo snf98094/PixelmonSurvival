@@ -1,11 +1,10 @@
 #pragma once
-
 #include "Core.h"
 
 class ENGINE_API Vector2
 {
 public:
-	Vector2(int x = 0, int y = 0);
+	Vector2(float x = 0, float y = 0);
 	~Vector2() = default;
 
 	// 연산자 오버로딩.
@@ -18,6 +17,6 @@ public:
 
 public:
 	// x좌표 / y좌표.
-	int x = 0;
-	int y = 0;
+	float x = 0;
+	float y = 0;
 };

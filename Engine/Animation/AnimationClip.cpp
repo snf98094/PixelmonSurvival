@@ -59,12 +59,18 @@ void AnimationClip::Stop()
 void AnimationClip::AddImage(ImageText* imageText, float clipPosition)
 {
 	imageList.push_back(new Image(imageText, clipPosition));
-	SetPlayPosition(playPosition);
+	SetPosition(playPosition);
 }
 
-void AnimationClip::SetPlayPosition(Vector2 playPosition)
+void AnimationClip::SetPosition(Vector2 playPosition)
 {
 	this->playPosition = playPosition;
 	for (auto* image : imageList)
 		image->image->SetDrawingPosition(playPosition);
+}
+
+void AnimationClip::SetFlip(bool value)
+{
+	for (auto* image : imageList)
+		image->image->SetFlip(value);
 }

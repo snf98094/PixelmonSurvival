@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 #include <vector>
 #include <Windows.h>
@@ -7,6 +6,8 @@
 #define _CRTDBG_MAP_ALLOC
 #include <stdlib.h>
 #include <crtdbg.h>
+
+using namespace std;
 
 // 색상 열거형.
 enum class Color : unsigned short

@@ -28,3 +28,15 @@ AnimationClip* Animator::GetCurrentClip()
 {
 	return currentClip;
 }
+
+void Animator::SetPosition(Vector2 playPosition)
+{
+	for (const auto& clip : clips) 
+		clip.second->SetPosition(playPosition);
+}
+
+void Animator::SetFlip(bool value)
+{
+	for (const auto& clip : clips)
+		clip.second->SetFlip(value);
+}

@@ -13,14 +13,21 @@ public:
 	void Print();
 	void SetDrawingPosition(Vector2 drawingPosition);
 
+	// 좌우 반전 값 생성.
+	void CreateFlipImage();
+
 	// 이미지 크기 Getter.
 	const Vector2& GetSize() { return size; }
 	// 이미지를 그릴 좌표 Getter.
 	const Vector2& GetDrawingPosition() { return drawingPosition; }
+	// 이미지 반전 여부 Setter.
+	void SetFlip(bool value) { isFlip = value; }
 
 private:
 	// 이미지로 사용할 컬러값 리스트.
-	std::vector<std::vector<Color>>* colorList;
+	vector<vector<Color>>* colorList;
+	// 좌우 반전 이미지로 사용할 컬러값 리스트.
+	vector<vector<Color>>* flipList;
 	// 이미지 크기.
 	Vector2 size = Vector2(0, 0);
 	// 이미지를 그릴 좌표.
@@ -29,4 +36,6 @@ private:
 	Vector2 prevPosition = Vector2(0, 0);
 	// 복사로 생성한 이미지 여부.
 	bool isCopy = false;
+	// 이미지 반전 여부.
+	bool isFlip = false;
 };

@@ -17,12 +17,12 @@ ImageText::ImageText(const char* name)
 	// 파일 처리.
 	if (!file)
 	{
-		std::cout << "이미지 파일 열기 실패.\n";
+		cout << "이미지 파일 열기 실패.\n";
 		__debugbreak;
 		return;
 	}
 
-	colorList = new std::vector<std::vector<Color>>();
+	colorList = new vector<vector<Color>>();
 	auto& image = *colorList;
 
 	// 한 줄씩 읽기
@@ -62,12 +62,17 @@ ImageText::ImageText(const char* name)
 
 	// 파일 닫기
 	fclose(file);
+
+	// 좌우 반전 값 생성.
+	CreateFlipImage();
 }
 
 ImageText::ImageText(const ImageText* other)
 {
 	// 컬러값 리스트.
 	colorList = other->colorList;
+	// 좌우 반전 컬러값 리스트.
+	flipList = other->flipList;
 	// 크기 복사.
 	size = other->size;
 	// 좌표 복사.
@@ -82,12 +87,13 @@ ImageText::~ImageText()
 	if (!isCopy)
 	{
 		delete colorList;
+		delete flipList;
 	}
 }
 
 void ImageText::Print()
 {
-	Engine::Get().Draw(drawingPosition, *colorList);
+	Engine::Get().Draw(drawingPosition, isFlip ? *flipList : *colorList);
 }
 
 void ImageText::SetDrawingPosition(Vector2 drawingPosition)
@@ -99,4 +105,24 @@ void ImageText::SetDrawingPosition(Vector2 drawingPosition)
 
 	// 드로잉 좌표 갱신.
 	this->drawingPosition = drawingPosition - size / 2.0f;
+}
+
+void ImageText::CreateFlipImage()
+{
+	flipList = new vector<vector<Color>>();
+	auto& flipImage = *flipList;
+	auto& defaultImage = *colorList;
+
+	int sizeY = defaultImage.size();
+	for (int y = 0; y < sizeY; y++)
+	{
+		// flipList 줄 추가.
+		flipImage.emplace_back();
+
+		// 반대로 저장.
+		int sizeX = defaultImage[y].size() - 2;
+		for (int x = sizeX; x != 0; x--)
+			// flipList 값 저장.
+			flipImage[y].emplace_back(defaultImage[y][x]);
+	}
 }

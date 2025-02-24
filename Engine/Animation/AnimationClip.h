@@ -41,16 +41,19 @@ public:
 	// 플레이할 이미지 추가.
 	// float position = 0.0~1.0 재생할 위치 지정.
 	void AddImage(ImageText* imageText, float clipPosition);
-	void SetPlayPosition(Vector2 playPosition);
+	// 이미지 재생 위치.
+	void SetPosition(Vector2 playPosition);
+	// 이미지 반전 여부.
+	void SetFlip(bool value);
 
 	// 클립 이름 Getter.
 	const char* GetName() { return name; }
 	// 루프 Setter.
 	void SetLoop(bool isLoop) { this->isLoop = isLoop; }
-
+	
 	// 현재 Image의 ImageText 리턴.
 	ImageText* GetImage() { return imageList[currentIndex]->image; }
-	std::vector<Image*> GetImages() { return imageList; }
+	vector<Image*> GetImages() { return imageList; }
 	
 private:
 	// 클립 이름.
@@ -62,7 +65,7 @@ private:
 	// 경과 시간.
 	float elapsedTime = 0.0f;
 	// 재생할 이미지 리스트.
-	std::vector<Image*> imageList;
+	vector<Image*> imageList;
 	// 재생 여부.
 	bool isPlaying = false;
 	// 루프 여부.
