@@ -12,7 +12,6 @@ Player::Player(GameLevel* level)
 
 	// 기본 애니메이션 추가.
 	AnimationClip* idleClip = new AnimationClip(idle, 0.8f);
-	idleClip->SetPosition(position);
 	idleClip->AddImage(new ImageText("Character/Warrior_Idle01"), 0.0f);
 	idleClip->AddImage(new ImageText("Character/Warrior_Idle02"), 0.5f);
 	idleClip->SetLoop(true);
@@ -20,7 +19,6 @@ Player::Player(GameLevel* level)
 
 	// 이동 애니메이션 추가.
 	AnimationClip* moveClip = new AnimationClip(move, 0.6f);
-	moveClip->SetPosition(position);
 	moveClip->AddImage(new ImageText("Character/Warrior_Move01"), 0.0f);
 	moveClip->AddImage(new ImageText("Character/Warrior_Move02"), 0.2f);
 	moveClip->AddImage(new ImageText("Character/Warrior_Move03"), 0.4f);
@@ -33,13 +31,11 @@ Player::Player(GameLevel* level)
 	playerAnimator.AddClip(idleClip);
 	playerAnimator.AddClip(moveClip);
 
+	// 재생 위치 이동.
+	playerAnimator.SetPosition(position);
+
 	// 기본 애니메이션 실행.
 	SetState(PlayerState::Idle);
-}
-
-Player::~Player()
-{
-	
 }
 
 void Player::Update(float deltaTime)
@@ -81,16 +77,6 @@ void Player::Update(float deltaTime)
 		SetState(PlayerState::Idle);
 }
 
-void Player::Draw()
-{
-	
-}
-
-void Player::LateUpdate(float deltaTime)
-{
-	
-}
-
 void Player::SetState(PlayerState state)
 {
 	this->state = state;
@@ -109,5 +95,6 @@ void Player::SetState(PlayerState state)
 		break;
 	}
 
+	// 현재 재생 중인 클립 저장.
 	animationClip = playerAnimator.GetCurrentClip();
 }
