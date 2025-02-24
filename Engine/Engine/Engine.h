@@ -60,6 +60,8 @@ public:
 	bool GetKeyDown(int key);
 	bool GetKeyUp(int key);
 
+	Vector2 MousePosition() const;
+
 	// 엔진 종료 함수.
 	void QuitGame();
 
@@ -101,11 +103,11 @@ protected:
 	// 메인 레벨 변수.
 	Level* mainLevel = nullptr;
 
-	// 프레임을 업데이트해야 하는지 여부를 나타내는 변수.
-	bool shouldUpdate = true;
-
 	// 화면 크기.
 	Vector2 screenSize;
+
+	// 마우스 좌표 위치.
+	Vector2 mousePosition;
 
 	// 화면 지울 때 사용할 버퍼(Buffer/Blob).
 	CHAR_INFO* imageBuffer = nullptr;

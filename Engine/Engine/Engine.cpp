@@ -43,6 +43,14 @@ Engine::Engine()
 
 	// 스왑 버퍼.
 	Present();
+
+	// 마우스/윈도우 이벤트 활성화.
+	HANDLE inputHandle = GetStdHandle(STD_INPUT_HANDLE);
+	int flag = ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT | ENABLE_PROCESSED_INPUT | ENABLE_EXTENDED_FLAGS;
+	SetConsoleMode(inputHandle, flag);
+
+	// std::cin/std::cout 연결 끊기.
+	std::ios::sync_with_stdio(false);
 }
 
 Engine::~Engine()
@@ -86,7 +94,6 @@ void Engine::Run()
 		}
 
 		// 현재 프레임 시간 저장.
-		//time = timeGetTime();
 		QueryPerformanceCounter(&time);
 		currentTime = time.QuadPart;
 
@@ -94,22 +101,15 @@ void Engine::Run()
 		float deltaTime = static_cast<float>(currentTime - previousTime) /
 			static_cast<float>(frequency.QuadPart);
 
-		// 한 프레임 시간 계산.
-		//float targetOneFrameTime = 1.0f / targetFrameRate;
-
 		// 프레임 확인.
 		if (deltaTime >= targetOneFrameTime)
 		{
 			// 입력 처리 (현재 키의 눌림 상태 확인).
 			ProcessInput();
 
-			// 업데이트 가능한 상태에서만 프레임 업데이트 처리.
-			if (shouldUpdate)
-			{
-				Update(deltaTime);
-				Draw();
-				LateUpdate(deltaTime);
-			}
+			Update(deltaTime);
+			Draw();
+			LateUpdate(deltaTime);
 
 			// 키 상태 저장.
 			SavePreviouseKeyStates();
@@ -119,13 +119,7 @@ void Engine::Run()
 
 			// 액터 정리 (삭제 요청된 액터들 정리).
 			if (mainLevel)
-			{
-				//mainLevel->DestroyActor();
 				mainLevel->ProcessAddedAndDestroyedActor();
-			}
-
-			// 프레임 활성화.
-			shouldUpdate = true;
 		}
 	}
 }
@@ -148,8 +142,6 @@ void Engine::AddActor(Actor* newActor)
 		return;
 	}
 
-	// 레벨에 액터 추가.
-	shouldUpdate = false;
 	mainLevel->AddActor(newActor);
 }
 
@@ -161,8 +153,6 @@ void Engine::DestroyActor(Actor* targetActor)
 		return;
 	}
 
-	// 레벨에 액터 추가.
-	shouldUpdate = false;
 	targetActor->Destroy();
 }
 
@@ -268,6 +258,11 @@ bool Engine::GetKeyUp(int key)
 	return !keyState[key].isKeyDown && keyState[key].wasKeyDown;
 }
 
+Vector2 Engine::MousePosition() const
+{
+	return mousePosition;
+}
+
 void Engine::QuitGame()
 {
 	// 종료 플래그 설정.
@@ -282,9 +277,43 @@ Engine& Engine::Get()
 
 void Engine::ProcessInput()
 {
-	for (int ix = 0; ix < 255; ++ix)
+	static HANDLE inputHandle = GetStdHandle(STD_INPUT_HANDLE);
+
+	INPUT_RECORD record;
+	DWORD events;
+	if (PeekConsoleInput(inputHandle, &record, 1, &events) && events > 0)
 	{
-		keyState[ix].isKeyDown = (GetAsyncKeyState(ix) & 0x8000) ? true : false;
+		if (ReadConsoleInput(inputHandle, &record, 1, &events))
+		{
+			switch (record.EventType)
+			{
+			case KEY_EVENT:
+			{
+				// 키 눌림 상태 업데이트.
+				if (record.Event.KeyEvent.bKeyDown)
+					keyState[record.Event.KeyEvent.wVirtualKeyCode].isKeyDown = true;
+				// 키 눌림 해제 상태 업데이트.
+				else keyState[record.Event.KeyEvent.wVirtualKeyCode].isKeyDown = false;
+			}
+			break;
+
+			case MOUSE_EVENT:
+			{
+				// 마우스 커서 위치 업데이트.
+				mousePosition.x = record.Event.MouseEvent.dwMousePosition.X;
+				mousePosition.y = record.Event.MouseEvent.dwMousePosition.Y;
+
+				// 마우스 왼쪽 버튼 클릭 상태 업데이트.
+				keyState[VK_LBUTTON].isKeyDown
+					= (record.Event.MouseEvent.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) != 0;
+
+				// 마우스 오른쪽 버튼 클릭 상태 업데이트.
+				keyState[VK_RBUTTON].isKeyDown
+					= (record.Event.MouseEvent.dwButtonState & RIGHTMOST_BUTTON_PRESSED) != 0;
+			}
+			break;
+			}
+		}
 	}
 }
 
@@ -317,9 +346,7 @@ void Engine::Draw()
 
 	// 레벨 그리기.
 	if (mainLevel != nullptr)
-	{
 		mainLevel->Draw();
-	}
 
 	// 백버퍼에 데이터 쓰기.
 	GetRenderer()->Draw(imageBuffer);
@@ -338,9 +365,7 @@ void Engine::Present()
 void Engine::SavePreviouseKeyStates()
 {
 	for (int ix = 0; ix < 255; ++ix)
-	{
 		keyState[ix].wasKeyDown = keyState[ix].isKeyDown;
-	}
 }
 
 void Engine::ClearImageBuffer()
