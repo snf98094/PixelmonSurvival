@@ -1,5 +1,6 @@
 #include "GameLevel.h"
 #include "Engine/Engine.h"
+#include "Actor/Background.h"
 
 GameLevel::GameLevel()
 {
@@ -9,6 +10,9 @@ GameLevel::GameLevel()
 	Monster* goblin = new Monster(this, "Goblin", Vector2(200.0f, 200.0f));
 	actors.push_back(goblin);
 	goblin->SetTarget(*player);
+
+	Background* background = new Background();
+	actors.push_back(background);
 }
 
 GameLevel::~GameLevel()

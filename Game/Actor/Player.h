@@ -12,6 +12,7 @@ class Player : public Actor
 	};
 
 	RTTI_DECLARATIONS(Player, Actor)
+
 public:
 	Player(GameLevel* level);
 

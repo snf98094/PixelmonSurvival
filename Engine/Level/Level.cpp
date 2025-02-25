@@ -64,18 +64,6 @@ void Level::Update(float deltaTime)
 
 		actors[i]->Update(deltaTime);
 	}
-
-	// 레벨에 포함된 액터를 순회하면서 Update 함수 호출.
-	//for (Actor* actor : actors)
-	//{
-	//	// 액터가 비활성화 상태이거나, 삭제 요청된 경우 건너뛰기.
-	//	if (!actor->isActive || actor->isExpired)
-	//	{
-	//		continue;
-	//	}
-
-	//	actor->Update(deltaTime);
-	//}
 }
 
 void Level::Draw()

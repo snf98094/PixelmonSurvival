@@ -12,6 +12,7 @@ class Monster : public Actor
 	};
 
 	RTTI_DECLARATIONS(Monster, Actor)
+
 public:
 	Monster(GameLevel* level, string name, Vector2 position);
 

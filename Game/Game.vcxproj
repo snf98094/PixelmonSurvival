@@ -179,12 +179,14 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor\Background.cpp" />
     <ClCompile Include="Actor\Monster.cpp" />
     <ClCompile Include="Actor\Player.cpp" />
     <ClCompile Include="Level\GameLevel.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor\Background.h" />
     <ClInclude Include="Actor\Monster.h" />
     <ClInclude Include="Actor\Player.h" />
     <ClInclude Include="Level\GameLevel.h" />

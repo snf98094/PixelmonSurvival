@@ -26,7 +26,7 @@ ImageText::ImageText(const char* name)
 	auto& image = *colorList;
 
 	// 한 줄씩 읽기
-	char line[512];  // 한 줄을 저장할 버퍼
+	char line[4096];  // 한 줄을 저장할 버퍼
 	while (fgets(line, sizeof(line), file))
 	{
 		// colorList 줄 추가.
