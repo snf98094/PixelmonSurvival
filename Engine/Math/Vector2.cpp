@@ -88,13 +88,13 @@ Vector2 Vector2::operator/(const float scale)
     return Vector2(x / scale, y / scale);
 }
 
-float Vector2::Length()
+float Vector2::Magnitude()
 {
     return sqrtf(x * x + y * y);
 }
 
 Vector2 Vector2::Normalized()
 {
-    float length = Length();
-    return Vector2(x / length, y / length);
+    float magnitude = Magnitude();
+    return Vector2(x / magnitude, y / magnitude);
 }
