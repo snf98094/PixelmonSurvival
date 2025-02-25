@@ -167,7 +167,7 @@ void Engine::Draw(const Vector2& position, vector<vector<Color>>& image)
 			if (image[y][x] == Color::None)
 				continue;
 
-			int index = (position.y + y) * screenSize.x + position.x + x;
+			int index = ((int)position.y + y) * (int)screenSize.x + (int)position.x + x;
 			imageBuffer[index].Char.UnicodeChar = L'бс';
 			imageBuffer[index].Attributes = (unsigned long)image[y][x];
 		}
