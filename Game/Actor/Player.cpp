@@ -44,29 +44,30 @@ void Player::Update(float deltaTime)
 	Vector2 movePoint;
 
 	if (Engine::Get().GetKey(VK_LEFT))
-	{
-		movePoint = Vector2(-1.0f, 0.0f);
-		// 반전 여부 적용.
-		playerAnimator.SetFlip(false);
-	}
+		movePoint.x = -1.0f;
 	if (Engine::Get().GetKey(VK_RIGHT))
-	{
-		movePoint = Vector2(1.0f, 0.0f);
-		// 반전 여부 적용.
-		playerAnimator.SetFlip(true);
-	}
+		movePoint.x = 1.0f;
 	if (Engine::Get().GetKey(VK_UP))
-		movePoint = Vector2(0.0f, -1.0f);
+		movePoint.y = -1.0f;
 	if (Engine::Get().GetKey(VK_DOWN))
-		movePoint = Vector2(0.0f, 1.0f);
+		movePoint.y = 1.0f;
 
 	if (movePoint != Vector2(0.0f, 0.0f))
 	{
+		// 방향 벡터로 변환.
+		movePoint = movePoint.Normalized();
+
 		// 위치 이동.
 		position = position + movePoint * speed * deltaTime;
 
 		// 플레이어 재생 위치 이동.
 		playerAnimator.SetPosition(position);
+
+		// 반전 여부 적용.
+		if (movePoint.x > 0.0f)
+			playerAnimator.SetFlip(true);
+		else if (movePoint.x < 0.0f)
+			playerAnimator.SetFlip(false);
 
 		// 현재 상태가 이동이 아니라면 이동 상태로 변경.
 		if (animationClip != playerAnimator.GetClip(move))

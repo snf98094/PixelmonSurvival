@@ -179,7 +179,7 @@ void Engine::Draw(const Vector2& position, const wchar_t* image, Color color)
 	int size = wcslen(image);
 	for (int ix = 0; ix < size; ++ix)
 	{
-		int index = (position.y * (screenSize.x)) + position.x + ix;
+		int index = position.y * screenSize.x + position.x + ix;
 		imageBuffer[index].Char.UnicodeChar = image[ix];
 		imageBuffer[index].Attributes = (unsigned long)color;
 	}
@@ -190,7 +190,7 @@ void Engine::Draw(const Vector2& position, const wchar_t* image, int rightOffset
 	int size = wcslen(image) - rightOffset;
 	for (int ix = 0; ix < size; ++ix)
 	{
-		int index = (position.y * (screenSize.x)) + position.x + ix;
+		int index = position.y * screenSize.x + position.x + ix;
 		imageBuffer[index].Char.UnicodeChar = image[ix];
 		imageBuffer[index].Attributes = (unsigned long)color;
 	}
