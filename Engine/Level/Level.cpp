@@ -85,6 +85,30 @@ void Level::Draw()
 
 		actor->Draw();
 	}
+
+	for (Actor* actor : actors)
+	{
+		if (!actor->isActive || actor->isExpired)
+			continue;
+
+		actor->MonsterDraw();
+	}
+
+	for (Actor* actor : actors)
+	{
+		if (!actor->isActive || actor->isExpired)
+			continue;
+
+		actor->PlayerDraw();
+	}
+
+	for (Actor* actor : actors)
+	{
+		if (!actor->isActive || actor->isExpired)
+			continue;
+
+		actor->ObjectDraw();
+	}
 }
 
 void Level::LateUpdate(float deltaTime)

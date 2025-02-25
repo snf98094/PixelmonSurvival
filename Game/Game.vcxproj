@@ -188,6 +188,7 @@
   <ItemGroup>
     <ClInclude Include="Actor\Background.h" />
     <ClInclude Include="Actor\Monster.h" />
+    <ClInclude Include="Actor\Object.h" />
     <ClInclude Include="Actor\Player.h" />
     <ClInclude Include="Level\GameLevel.h" />
   </ItemGroup>

@@ -10,7 +10,12 @@ public:
 	Background();
 
 	virtual void BackgroundDraw() override;
+	virtual void LateUpdate(float delatTime) override;
+
+	void SetBloack();
 
 private:
 	ImageText* background = nullptr;
+	bool** blocks;
+	bool isBlockOpen = true;
 };
