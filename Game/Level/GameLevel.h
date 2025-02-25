@@ -1,6 +1,7 @@
 #pragma once
 #include "Level/Level.h"
 #include "Actor/Player.h"
+#include "Actor/Monster.h"
 #include "UI/NumberText.h"
 #include "Image/ImageText.h"
 

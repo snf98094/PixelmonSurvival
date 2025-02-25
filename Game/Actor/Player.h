@@ -27,15 +27,13 @@ private:
 	PlayerState state = PlayerState::Idle;
 
 	// 플레이어 애니메이터.
-	Animator playerAnimator;
+	Animator animator;
 	// 플레이 중인 애니메이션 클립.
 	AnimationClip* animationClip = nullptr;
 	// 플레이어 애니메이션 키.
 	const char* idle = "Idle";
 	const char* move = "Move";
 
-	// 플레이어 위치.
-	Vector2 position = Vector2(0.0f);
 	// 플레이어 이동 속도.
 	float speed = 60.0f;
 };

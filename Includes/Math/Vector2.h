@@ -26,7 +26,7 @@ public:
 	Vector2 operator/(const float scale);
 
 	// 길이 구하기.
-	float Length();
+	float Magnitude();
 	// 방향 구하기.
 	Vector2 Normalized();
 

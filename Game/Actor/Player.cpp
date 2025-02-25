@@ -1,6 +1,5 @@
 #include "Player.h"
 #include "Engine/Engine.h"
-#include "Level/Level.h"
 #include "Level/GameLevel.h"
 
 Player::Player(GameLevel* level)
@@ -28,11 +27,11 @@ Player::Player(GameLevel* level)
 	level->AddActor(moveClip);
 
 	// 애니메이터에 클립 저장.
-	playerAnimator.AddClip(idleClip);
-	playerAnimator.AddClip(moveClip);
+	animator.AddClip(idleClip);
+	animator.AddClip(moveClip);
 
 	// 재생 위치 이동.
-	playerAnimator.SetPosition(position);
+	animator.SetPosition(position);
 
 	// 기본 애니메이션 실행.
 	SetState(PlayerState::Idle);
@@ -58,22 +57,22 @@ void Player::Update(float deltaTime)
 		movePoint = movePoint.Normalized();
 
 		// 위치 이동.
-		position = position + movePoint * speed * deltaTime;
+		position += movePoint * speed * deltaTime;
 
 		// 플레이어 재생 위치 이동.
-		playerAnimator.SetPosition(position);
+		animator.SetPosition(position);
 
 		// 반전 여부 적용.
 		if (movePoint.x > 0.0f)
-			playerAnimator.SetFlip(true);
+			animator.SetFlip(true);
 		else if (movePoint.x < 0.0f)
-			playerAnimator.SetFlip(false);
+			animator.SetFlip(false);
 
 		// 현재 상태가 이동이 아니라면 이동 상태로 변경.
-		if (animationClip != playerAnimator.GetClip(move))
+		if (animationClip != animator.GetClip(move))
 			SetState(PlayerState::Move);
 	}
-	else if (animationClip != playerAnimator.GetClip(idle))
+	else if (animationClip != animator.GetClip(idle))
 		// 기본 상태로 변경.
 		SetState(PlayerState::Idle);
 }
@@ -85,17 +84,17 @@ void Player::SetState(PlayerState state)
 	switch (state)
 	{
 	case Player::PlayerState::Idle:
-		playerAnimator.Play(idle);
+		animator.Play(idle);
 		break;
 
 	case Player::PlayerState::Die:
 		break;
 
 	case Player::PlayerState::Move:
-		playerAnimator.Play(move);
+		animator.Play(move);
 		break;
 	}
 
 	// 현재 재생 중인 클립 저장.
-	animationClip = playerAnimator.GetCurrentClip();
+	animationClip = animator.GetCurrentClip();
 }
