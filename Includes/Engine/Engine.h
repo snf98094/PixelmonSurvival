@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 #include "Math/Vector2.h"
+#include <Image/ImageText.h>
 
 // 입력 처리를 위한 구조체.
 struct KeyState
@@ -62,6 +63,9 @@ public:
 
 	Vector2 MousePosition() const;
 
+	// 초기화 이미지 세팅.
+	void SetClearImage(ImageText* clearImage) { this->clearImage = clearImage; }
+
 	// 엔진 종료 함수.
 	void QuitGame();
 
@@ -115,4 +119,7 @@ protected:
 	// 화면 버퍼.
 	ScreenBuffer* renderTargets[2];
 	int currentRenderTargetIndex = 0;
+
+	// 초기화용 이미지.
+	ImageText* clearImage = nullptr;
 };

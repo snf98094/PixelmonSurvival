@@ -11,7 +11,6 @@ public:
 	~Background();
 
 	virtual void BackgroundDraw() override;
-	virtual void Update(float delatTime) override;
 
 	// 못가는 지형 체크.
 	void SetBloack();

@@ -17,6 +17,8 @@ Background::Background()
 
 	SetBloack();
 	SetAStarGrid();
+
+	Engine::Get().SetClearImage(background);
 }
 
 Background::~Background()
@@ -31,7 +33,7 @@ Background::~Background()
 
 void Background::BackgroundDraw()
 {
-	background->Print();
+	//background->Print();
 
 	if (!isBlockOpen)
 		return;
@@ -44,12 +46,6 @@ void Background::BackgroundDraw()
 			if (blocks[x][y])
 				Engine::Get().Draw(Vector2(x, y), L"бс", Color::Red);
 	}
-}
-
-void Background::Update(float delatTime)
-{
-	if (Engine::Get().GetKeyDown(VK_LBUTTON))
-		isBlockOpen = !isBlockOpen;
 }
 
 //void Background::SetBloack()

@@ -17,6 +17,7 @@ public:
 	Monster(GameLevel* level, string name, Vector2 position);
 
 	virtual void Update(float deltaTime) override;
+	virtual void LateUpdate(float deltaTime) override;
 
 	void SetState(MonsterState state);
 
@@ -44,4 +45,7 @@ private:
 	float speed = 40.0f;
 	// 목표와 간격 체크.
 	float targetInterval = 30.0f;
+
+	// 이동 길을 보여줄지 체크하는 변수.
+	bool isMovePointDrawing = false;
 };

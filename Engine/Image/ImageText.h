@@ -22,6 +22,8 @@ public:
 	const Vector2& GetDrawingPosition() { return drawingPosition; }
 	// 이미지 반전 여부 Setter.
 	void SetFlip(bool value) { isFlip = value; }
+	// 이미지 컬러값 Getter.
+	vector<vector<Color>>& GetColorList() { return *colorList; }
 
 private:
 	// 이미지로 사용할 컬러값 리스트.

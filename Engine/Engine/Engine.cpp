@@ -185,7 +185,7 @@ void Engine::Draw(const Vector2& position, vector<vector<Color>>& image)
 
 			int index = ((int)position.y + y) * (int)screenSize.x + (int)position.x + x;
 			imageBuffer[index].Char.UnicodeChar = L'■';
-			imageBuffer[index].Attributes = (unsigned long)image[y][x];
+			imageBuffer[index].Attributes = (unsigned short)image[y][x];
 		}
 	}
 }
@@ -197,7 +197,7 @@ void Engine::Draw(const Vector2& position, const wchar_t* image, Color color)
 	{
 		int index = position.y * screenSize.x + position.x + ix;
 		imageBuffer[index].Char.UnicodeChar = image[ix];
-		imageBuffer[index].Attributes = (unsigned long)color;
+		imageBuffer[index].Attributes = (unsigned short)color;
 	}
 }
 
@@ -388,25 +388,45 @@ void Engine::SavePreviouseKeyStates()
 
 void Engine::ClearImageBuffer()
 {
-	// 버퍼 덮어쓰기.
-	for (int y = 0; y < screenSize.y; ++y)
-	{
-		// 버퍼 덮어쓰기.
-		for (int x = 0; x < screenSize.x; ++x)
-		{
-			auto& buffer = imageBuffer[y * (int)screenSize.x + x];
-			buffer.Char.UnicodeChar = L'■';
-			buffer.Attributes = (int)Color::White;
-		}
+	if (!clearImage)
+		return;
 
-		// 각 줄 끝에 개행 문자 추가.
-		auto& buffer = imageBuffer[y * (int)screenSize.x + (int)screenSize.x];
-		buffer.Char.UnicodeChar = L'\n';
-		buffer.Attributes = (int)Color::White;
+	auto& colorList = clearImage->GetColorList();
+
+	int sizeY = colorList.size();
+	for (int y = 0; y < sizeY; y++)
+	{
+		int sizeX = colorList[y].size() - 1;
+		for (int x = 0; x < sizeX; x++)
+		{
+			if (colorList[y][x] == Color::None)
+				continue;
+
+			int index = y * (int)screenSize.x + x;
+			imageBuffer[index].Char.UnicodeChar = L'■';
+			imageBuffer[index].Attributes = (unsigned short)colorList[y][x];
+		}
 	}
 
-	// 마지막에 널 문자 추가.
-	auto& buffer = imageBuffer[(int)screenSize.x * (int)screenSize.y];
-	buffer.Char.UnicodeChar = L'\0';
-	buffer.Attributes = (int)Color::White;
+	//// 버퍼 덮어쓰기.
+	//for (int y = 0; y < screenSize.y; ++y)
+	//{
+	//	// 버퍼 덮어쓰기.
+	//	for (int x = 0; x < screenSize.x; ++x)
+	//	{
+	//		auto& buffer = imageBuffer[y * (int)screenSize.x + x];
+	//		buffer.Char.UnicodeChar = L'■';
+	//		buffer.Attributes = (int)Color::White;
+	//	}
+
+	//	// 각 줄 끝에 개행 문자 추가.
+	//	auto& buffer = imageBuffer[y * (int)screenSize.x + (int)screenSize.x];
+	//	buffer.Char.UnicodeChar = L'\n';
+	//	buffer.Attributes = (int)Color::White;
+	//}
+
+	//// 마지막에 널 문자 추가.
+	//auto& buffer = imageBuffer[(int)screenSize.x * (int)screenSize.y];
+	//buffer.Char.UnicodeChar = L'\0';
+	//buffer.Attributes = (int)Color::White;
 }

@@ -81,6 +81,29 @@ void Monster::Update(float deltaTime)
 		if (animationClip != animator.GetClip(move))
 			SetState(MonsterState::Move);
 	}
+
+	if (isMovePointDrawing)
+	{
+		int size = path.size();
+		for (int i = 1; i < size; i++)
+			Engine::Get().Draw(Vector2(path[i]->position.x, path[i]->position.y), L"бс", Color::Blue);
+	}
+}
+
+void Monster::LateUpdate(float deltaTime)
+{
+	if (Engine::Get().GetKeyDown(VK_LBUTTON))
+	{
+		Vector2 mousePoint = Engine::Get().MousePosition();
+		Vector2 monsterSize = animationClip->GetImage()->GetSize();
+		if (mousePoint.x > position.x - monsterSize.x * 0.5f &&
+			mousePoint.x < position.x + monsterSize.x * 0.5f &&
+			mousePoint.y > position.y - monsterSize.y &&
+			mousePoint.y < position.y)
+		{
+			isMovePointDrawing = !isMovePointDrawing;
+		}
+	}
 }
 
 void Monster::SetState(MonsterState state)
