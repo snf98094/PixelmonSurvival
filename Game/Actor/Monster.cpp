@@ -29,6 +29,9 @@ Monster::Monster(GameLevel* level, string name, Vector2 position)
 
 	// 기본 애니메이션 실행.
 	SetState(MonsterState::Move);
+
+	level->ChangeDepth(this, 0, (int)position.y);
+	prevY = (int)position.y;
 }
 
 void Monster::Update(float deltaTime)
@@ -92,18 +95,34 @@ void Monster::Update(float deltaTime)
 
 void Monster::LateUpdate(float deltaTime)
 {
-	if (Engine::Get().GetKeyDown(VK_LBUTTON))
+	//if (Engine::Get().GetKeyDown(VK_LBUTTON))
+	//{
+	//	Vector2 mousePoint = Engine::Get().MousePosition();
+	//	Vector2 monsterSize = animationClip->GetImage()->GetSize();
+	//	if (mousePoint.x > position.x - monsterSize.x * 0.5f &&
+	//		mousePoint.x < position.x + monsterSize.x * 0.5f &&
+	//		mousePoint.y > position.y - monsterSize.y &&
+	//		mousePoint.y < position.y)
+	//	{
+	//		isMovePointDrawing = !isMovePointDrawing;
+	//	}
+	//}
+
+	// 새로운 Y축.
+	int newY = (int)position.y;
+	// 이전 Y축과 새로운 Y축이 다른지 체크.
+	if (prevY != newY)
 	{
-		Vector2 mousePoint = Engine::Get().MousePosition();
-		Vector2 monsterSize = animationClip->GetImage()->GetSize();
-		if (mousePoint.x > position.x - monsterSize.x * 0.5f &&
-			mousePoint.x < position.x + monsterSize.x * 0.5f &&
-			mousePoint.y > position.y - monsterSize.y &&
-			mousePoint.y < position.y)
-		{
-			isMovePointDrawing = !isMovePointDrawing;
-		}
+		// 뎁스 변경.
+		level->ChangeDepth(this, prevY, newY);
+		// 이전 Y축에 새로운 Y축 할당.
+		prevY = newY;
 	}
+}
+
+void Monster::Draw()
+{
+	animationClip->GetImage()->Print();
 }
 
 void Monster::SetState(MonsterState state)

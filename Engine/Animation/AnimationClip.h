@@ -28,13 +28,11 @@ class ENGINE_API AnimationClip : public Actor
 	};
 
 public:
-	AnimationClip(const char* name, float time, bool isPlayer = false);
+	AnimationClip(const char* name, float time);
 	~AnimationClip();
 
 	virtual void Update(float delatTime) override;
 	virtual void Draw() override;
-	virtual void MonsterDraw() override;
-	virtual void PlayerDraw() override;
 
 	// 재생/정지 함수
 	void Play();
@@ -72,8 +70,6 @@ private:
 	bool isPlaying = false;
 	// 루프 여부.
 	bool isLoop = false;
-	// 플레이어용 클립 여부.
-	bool isPlayer = false;
 	// 현재 이미지 인덱스.
 	int currentIndex = 0;
 	// 재생할 위치.

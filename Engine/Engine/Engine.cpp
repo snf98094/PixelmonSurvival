@@ -150,15 +150,13 @@ void Engine::LoadLevel(Level* newLevel)
 	mainLevel = newLevel;
 }
 
-void Engine::AddActor(Actor* newActor)
+void Engine::AddActor(Actor* newActor, int depth)
 {
 	// 예외 처리.
 	if (mainLevel == nullptr)
-	{
 		return;
-	}
 
-	mainLevel->AddActor(newActor);
+	mainLevel->AddActor(newActor, depth);
 }
 
 void Engine::DestroyActor(Actor* targetActor)

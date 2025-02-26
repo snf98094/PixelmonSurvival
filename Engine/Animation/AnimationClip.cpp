@@ -1,8 +1,8 @@
 #include "PreCompiledHeader.h"
 #include "AnimationClip.h"
 
-AnimationClip::AnimationClip(const char* name, float time, bool isPlayer)
-	: name(name), time(time), isPlayer(isPlayer)
+AnimationClip::AnimationClip(const char* name, float time)
+	: name(name), time(time)
 {
 }
 
@@ -41,18 +41,6 @@ void AnimationClip::Draw()
 {
 	//if (isPlaying)
 	//	imageList[currentIndex]->image->Print();
-}
-
-void AnimationClip::MonsterDraw()
-{
-	if (!isPlayer && isPlaying)
-		imageList[currentIndex]->image->Print();
-}
-
-void AnimationClip::PlayerDraw()
-{
-	if (isPlayer && isPlaying)
-		imageList[currentIndex]->image->Print();
 }
 
 void AnimationClip::Play()

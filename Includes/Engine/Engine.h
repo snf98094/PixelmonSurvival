@@ -38,7 +38,7 @@ public:
 	void LoadLevel(Level* newLevel);
 
 	// 액터 추가/삭제 함수.
-	void AddActor(Actor* newActor);
+	void AddActor(Actor* newActor, int depth = 0);
 	void DestroyActor(Actor* targetActor);
 
 	void Draw(const Vector2& position, vector<vector<Color>>& image);

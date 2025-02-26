@@ -11,14 +11,14 @@ Player::Player(GameLevel* level)
 	position = Engine::Get().ScreenSize() / 2.0f;
 
 	// 기본 애니메이션 추가.
-	AnimationClip* idleClip = new AnimationClip(idle, 0.8f, true);
+	AnimationClip* idleClip = new AnimationClip(idle, 0.8f);
 	idleClip->AddImage(new ImageText("Character/Warrior_Idle01"), 0.0f);
 	idleClip->AddImage(new ImageText("Character/Warrior_Idle02"), 0.5f);
 	idleClip->SetLoop(true);
 	level->AddActor(idleClip);
 
 	// 이동 애니메이션 추가.
-	AnimationClip* moveClip = new AnimationClip(move, 0.6f, true);
+	AnimationClip* moveClip = new AnimationClip(move, 0.6f);
 	moveClip->AddImage(new ImageText("Character/Warrior_Move01"), 0.0f);
 	moveClip->AddImage(new ImageText("Character/Warrior_Move02"), 0.2f);
 	moveClip->AddImage(new ImageText("Character/Warrior_Move03"), 0.4f);
@@ -36,6 +36,9 @@ Player::Player(GameLevel* level)
 
 	// 기본 애니메이션 실행.
 	SetState(PlayerState::Idle);
+
+	level->ChangeDepth(this, 0, (int)position.y);
+	prevY = (int)position.y;
 }
 
 void Player::Update(float deltaTime)
@@ -83,6 +86,25 @@ void Player::Update(float deltaTime)
 	else if (animationClip != animator.GetClip(idle))
 		// 기본 상태로 변경.
 		SetState(PlayerState::Idle);
+}
+
+void Player::LateUpdate(float deltaTime)
+{
+	// 새로운 Y축.
+	int newY = (int)position.y;
+	// 이전 Y축과 새로운 Y축이 다른지 체크.
+	if (prevY != newY)
+	{
+		// 뎁스 변경.
+		level->ChangeDepth(this, prevY, newY);
+		// 이전 Y축에 새로운 Y축 할당.
+		prevY = newY;
+	}
+}
+
+void Player::Draw()
+{
+	animationClip->GetImage()->Print();
 }
 
 void Player::SetState(PlayerState state)

@@ -10,7 +10,7 @@ public:
 	Background();
 	~Background();
 
-	virtual void BackgroundDraw() override;
+	virtual void Draw() override;
 
 	// 못가는 지형 체크.
 	void SetBloack();

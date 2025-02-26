@@ -10,7 +10,7 @@ public:
 	Object(string name, Vector2 position);
 	~Object();
 
-	virtual void ObjectDraw() override;
+	virtual void Draw() override;
 
 private:
 	ImageText* object = nullptr;

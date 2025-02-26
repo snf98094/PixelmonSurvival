@@ -31,7 +31,7 @@ Background::~Background()
 	delete[] blocks;
 }
 
-void Background::BackgroundDraw()
+void Background::Draw()
 {
 	//background->Print();
 

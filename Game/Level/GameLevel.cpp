@@ -6,6 +6,9 @@
 
 GameLevel::GameLevel()
 {
+	Background* background = new Background();
+	AddActor(background);
+
 	player = new Player(this);
 	AddActor(player);
 
@@ -13,17 +16,14 @@ GameLevel::GameLevel()
 	AddActor(goblin);
 	goblin->SetTarget(*player);
 
-	Background* background = new Background();
-	AddActor(background);
-
 	Object* wood = new Object("Wood", Vector2(519.0f, 396.0f));
-	AddActor(wood);
+	AddActor(wood, 396);
 
-	Object* stone01 = new Object("Stone01", Vector2(303.0f, 229.0f));
-	actors.push_back(stone01);
+	Object* stone01 = new Object("Stone01", Vector2(303.0f, 263.0f));
+	AddActor(stone01, 229);
 
-	Object* stone02 = new Object("Stone02", Vector2(387.0f, 176.0f));
-	actors.push_back(stone02);
+	Object* stone02 = new Object("Stone02", Vector2(388.0f, 219.0f));
+	AddActor(stone02, 176);
 }
 
 GameLevel::~GameLevel()

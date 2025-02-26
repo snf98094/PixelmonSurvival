@@ -18,6 +18,7 @@ public:
 
 	virtual void Update(float deltaTime) override;
 	virtual void LateUpdate(float deltaTime) override;
+	virtual void Draw() override;
 
 	void SetState(MonsterState state);
 
@@ -48,4 +49,7 @@ private:
 
 	// 이동 길을 보여줄지 체크하는 변수.
 	bool isMovePointDrawing = false;
+
+	// 뎁스 변경용 이전 Y축 저장 변수.
+	int prevY = 0;
 };

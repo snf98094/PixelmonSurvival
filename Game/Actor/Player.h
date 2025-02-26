@@ -17,6 +17,8 @@ public:
 	Player(GameLevel* level);
 
 	virtual void Update(float deltaTime) override;
+	virtual void LateUpdate(float deltaTime) override;
+	virtual void Draw() override;
 
 	void SetState(PlayerState state);
 
@@ -37,4 +39,7 @@ private:
 
 	// 플레이어 이동 속도.
 	float speed = 90.0f;
+
+	// 뎁스 변경용 이전 Y축 저장 변수.
+	int prevY = 0;
 };

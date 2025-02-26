@@ -16,22 +16,6 @@ void Actor::Update(float delatTime)
 {
 }
 
-void Actor::BackgroundDraw()
-{
-}
-
-void Actor::ObjectDraw()
-{
-}
-
-void Actor::MonsterDraw()
-{
-}
-
-void Actor::PlayerDraw()
-{
-}
-
 void Actor::Draw()
 {
 }

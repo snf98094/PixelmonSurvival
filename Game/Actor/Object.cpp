@@ -11,7 +11,7 @@ Object::~Object()
 	delete object;
 }
 
-void Object::ObjectDraw()
+void Object::Draw()
 {
 	object->Print();
 }
