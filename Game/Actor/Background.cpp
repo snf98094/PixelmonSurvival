@@ -33,8 +33,6 @@ Background::~Background()
 
 void Background::Draw()
 {
-	//background->Print();
-
 	if (!isBlockOpen)
 		return;
 

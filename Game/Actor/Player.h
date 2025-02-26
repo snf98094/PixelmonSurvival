@@ -38,7 +38,7 @@ private:
 	const char* move = "Move";
 
 	// 플레이어 이동 속도.
-	float speed = 90.0f;
+	float speed = 70.0f;
 
 	// 뎁스 변경용 이전 Y축 저장 변수.
 	int prevY = 0;

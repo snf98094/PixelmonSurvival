@@ -41,5 +41,5 @@ private:
 	// AStar용 그리드.
 	vector<vector<bool>> aStarGrid;
 	// AStar용 맵 간격.
-	int gridInterval = 10;
+	int gridInterval = 15;
 };
