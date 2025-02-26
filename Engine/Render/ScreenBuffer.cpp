@@ -4,7 +4,7 @@
 ScreenBuffer::ScreenBuffer(const COORD& size)
 	: size(size)
 {
-	buffer = CreateConsoleScreenBuffer(GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
+	buffer = CreateConsoleScreenBuffer(GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, CONSOLE_TEXTMODE_BUFFER, NULL);
 	if (buffer == INVALID_HANDLE_VALUE)
 	{
 		__debugbreak();
@@ -16,6 +16,8 @@ ScreenBuffer::ScreenBuffer(const COORD& size)
 
 	CONSOLE_CURSOR_INFO info{ 1, false };
 	SetConsoleCursorInfo(buffer, &info);
+
+	SetConsoleMode(buffer, ENABLE_MOUSE_INPUT | ENABLE_PROCESSED_INPUT);
 }
 
 ScreenBuffer::ScreenBuffer(HANDLE console, const COORD& size)
@@ -29,6 +31,8 @@ ScreenBuffer::ScreenBuffer(HANDLE console, const COORD& size)
 	bufferInfo.dwSize.X = size.X + 1;
 	bufferInfo.dwSize.Y = size.Y + 1;
 	SetConsoleScreenBufferInfoEx(buffer, &bufferInfo);
+
+	SetConsoleMode(buffer, ENABLE_MOUSE_INPUT | ENABLE_PROCESSED_INPUT);
 }
 
 ScreenBuffer::~ScreenBuffer()

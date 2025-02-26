@@ -10,15 +10,12 @@ Level::~Level()
 {
 	// 메모리 해제.
 	for (Actor* actor : actors)
-	{
 		delete actor;
-	}
 }
 
 void Level::AddActor(Actor* newActor)
 {
-	actors.push_back(newActor);
-	//addRequestedActor = newActor;
+	addRequestedActors.emplace_back(newActor);
 }
 
 void Level::RemoveActor(Actor* newActor)
@@ -34,30 +31,38 @@ void Level::RemoveActor(Actor* newActor)
 void Level::ProcessAddedAndDestroyedActor()
 {
 	// 액터 순회 후 삭제 요청된 액터를 처리.
-	for (int ix = 0; ix < actors.size();)
+	int size = actors.size();
+	for (int i = 0; i < size; i++)
 	{
-		if (actors[ix]->isExpired)
+		if (actors[i]->isExpired)
 		{
-			delete actors[ix];
-			actors[ix] = nullptr;
-			actors.erase(actors.begin() + ix);
+			delete actors[i];
+			actors[i] = nullptr;
+			actors.erase(actors.begin() + i);
 			continue;
 		}
 
-		++ix;
+		++i;
 	}
 
 	// 추가 요청된 액터 처리.
-	if (addRequestedActor)
+	//if (addRequestedActor)
+	if (addRequestedActors.size() > 0)
 	{
-		actors.push_back(addRequestedActor);
-		addRequestedActor = nullptr;
+		for (Actor* actor : addRequestedActors)
+		{
+			actors.push_back(actor);
+			//addRequestedActor = nullptr;
+		}
+
+		addRequestedActors.clear();
 	}
 }
 
 void Level::Update(float deltaTime)
 {
-	for (int i = 0; i < actors.size(); i++)
+	int size = actors.size();
+	for (int i = 0; i < size; i++)
 	{
 		if (!actors[i]->isActive || actors[i]->isExpired)
 			continue;
@@ -113,7 +118,8 @@ void Level::Draw()
 
 void Level::LateUpdate(float deltaTime)
 {
-	for (int i = 0; i < actors.size(); i++)
+	int size = actors.size();
+	for (int i = 0; i < size; i++)
 	{
 		if (!actors[i]->isActive || actors[i]->isExpired)
 			continue;

@@ -14,6 +14,7 @@ public:
 	~GameLevel();
 
 	virtual void Draw() override;
+	virtual void Update(float deltaTime) override;
 
 private:
 	Player* player = nullptr;

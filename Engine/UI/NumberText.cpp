@@ -57,7 +57,7 @@ void NumberText::Draw()
 	else
 	{
 		int index = 0;
-		for (int i = length - 1; i >= 0; i--)
+		for (int i = (int)length - 1; i >= 0; i--)
 		{
 			if (index != 0 && index % 3 == 0)
 				commaList[(index - 1) / 3].Print();
@@ -86,7 +86,7 @@ void NumberText::SetNumber(int number)
 	length = strlen(this->number);
 
 	// 숫자 길이가 numberList 크기보다 크면 추가.
-	int size = numberList.size();
+	int size = (int)numberList.size();
 	if (length > size)
 		for (int i = 0; i < length - size; i++)
 		{
@@ -96,8 +96,8 @@ void NumberText::SetNumber(int number)
 		}
 
 	// 콤마 필요 갯수가 보유량보다 크면 추가.
-	int commaLength = (length - 1) / 3;
-	int commaSize = commaList.size();
+	int commaLength = ((int)length - 1) / 3;
+	int commaSize = (int)commaList.size();
 	if (commaLength > commaSize)
 		for (int i = 0; i < commaLength - commaSize; i++)
 			commaList.push_back(comma);
@@ -129,7 +129,7 @@ void NumberText::SetNumber(int number)
 	{
 		int index = 0;
 		int commaIndex = 0;
-		for (int i = length - 1; i >= 0; i--)
+		for (int i = (int)length - 1; i >= 0; i--)
 		{
 			if (index != 0 && index % 3 == 0)
 			{
@@ -145,8 +145,8 @@ void NumberText::SetNumber(int number)
 	{
 		int index = 0;
 		int commaIndex = 0;
-		int textOffset = length * (textInterval / 2);
-		for (int i = length - 1; i >= 0; i--)
+		int textOffset = (int)length * (textInterval / 2);
+		for (int i = (int)length - 1; i >= 0; i--)
 		{
 			if (index != 0 && index % 3 == 0)
 			{

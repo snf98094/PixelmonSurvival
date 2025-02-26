@@ -7,9 +7,10 @@ class Object : public Actor
 	RTTI_DECLARATIONS(Object, Actor)
 
 public:
-	Object();
+	Object(string name, Vector2 position);
+	~Object();
 
-	virtual void BackgroundDraw() override;
+	virtual void ObjectDraw() override;
 
 private:
 	ImageText* object = nullptr;

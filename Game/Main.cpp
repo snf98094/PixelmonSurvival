@@ -7,9 +7,9 @@ int main()
 	//system("color 42");
 
 	CheckMemoryLeak();
-	//_CrtSetBreakAlloc(15124);
+	//_CrtSetBreakAlloc(53476);
 	Engine engine;
-    engine.SetTargetFrameRate(20);
+    engine.SetTargetFrameRate(60);
     engine.SetCursorType(CursorType::NoCursor);
 	engine.LoadLevel(new GameLevel());
 	engine.Run();

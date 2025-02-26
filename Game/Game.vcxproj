@@ -181,7 +181,9 @@
   <ItemGroup>
     <ClCompile Include="Actor\Background.cpp" />
     <ClCompile Include="Actor\Monster.cpp" />
+    <ClCompile Include="Actor\Object.cpp" />
     <ClCompile Include="Actor\Player.cpp" />
+    <ClCompile Include="Game\AStar.cpp" />
     <ClCompile Include="Level\GameLevel.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
@@ -190,6 +192,7 @@
     <ClInclude Include="Actor\Monster.h" />
     <ClInclude Include="Actor\Object.h" />
     <ClInclude Include="Actor\Player.h" />
+    <ClInclude Include="Game\AStar.h" />
     <ClInclude Include="Level\GameLevel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

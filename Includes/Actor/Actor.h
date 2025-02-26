@@ -1,4 +1,7 @@
 #pragma once
+
+#pragma warning (disable: 4251)
+
 #include "Core.h"
 #include "RTTI.h"
 #include "Math/Vector2.h"

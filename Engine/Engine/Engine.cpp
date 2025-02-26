@@ -7,6 +7,19 @@
 #include <iostream>
 #include <time.h>
 
+// 콘솔 창 메시지 콜백.
+BOOL WINAPI MessageProcessor(DWORD message)
+{
+	switch (message)
+	{
+	case CTRL_CLOSE_EVENT:
+		Engine::Get().QuitGame();
+		return true;
+	default:
+		return false;
+	}
+}
+
 // 스태틱 변수 초기화.
 Engine* Engine::instance = nullptr;
 
@@ -43,6 +56,9 @@ Engine::Engine()
 
 	// 스왑 버퍼.
 	Present();
+
+	// 콘솔 창 이벤트 콜백 등록.
+	SetConsoleCtrlHandler(MessageProcessor, true);
 
 	// 마우스/윈도우 이벤트 활성화.
 	HANDLE inputHandle = GetStdHandle(STD_INPUT_HANDLE);
@@ -278,6 +294,8 @@ Engine& Engine::Get()
 void Engine::ProcessInput()
 {
 	static HANDLE inputHandle = GetStdHandle(STD_INPUT_HANDLE);
+	int flag = ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT | ENABLE_PROCESSED_INPUT | ENABLE_EXTENDED_FLAGS;
+	SetConsoleMode(inputHandle, flag);
 
 	INPUT_RECORD record;
 	DWORD events;

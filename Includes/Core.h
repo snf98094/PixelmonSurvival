@@ -1,4 +1,7 @@
 #pragma once
+
+#pragma warning (disable: 4251)
+
 #include <iostream>
 #include <vector>
 #include <Windows.h>

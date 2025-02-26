@@ -1,6 +1,8 @@
 #include "Monster.h"
 #include "Engine/Engine.h"
 #include "Level/GameLevel.h"
+#include "Game/AStar.h"
+#include "Background.h"
 
 Monster::Monster(GameLevel* level, string name, Vector2 position)
 {
@@ -34,11 +36,31 @@ void Monster::Update(float deltaTime)
 	if (!target)
 		return;
 
+	float magnitude = (target->Position() - position).Magnitude();
+	if (magnitude < targetInterval)
+		return;
+
+	// AStar 객체.
+	AStar aStar;
+
+	// 맵에서 시작 위치 목표 위치 검색.
+	Vector2 startPosition = Background::Get().GetAStarPosition(position);
+	Vector2 goalPosition = Background::Get().GetAStarPosition(target->Position());
+	AStarNode* startNode = new AStarNode(startPosition.x, startPosition.y);
+	AStarNode goalNode(goalPosition.x, goalPosition.y);
+	vector<vector<bool>>& grid = Background::Get().GetAStarGrid();
+
+	// 경로 탐색.
+	vector<AStarNode*> path = aStar.FindPath(startNode, &goalNode, grid);
+	if (path.size() == 0)
+		return;
+
 	// 대상과 벡터 거리.
-	Vector2 length = target->Position() - position;
+	Vector2 targetPosition = Vector2(path[1]->position.x, path[1]->position.y) * Background::Get().GetGridInterval();
+	Vector2 length = targetPosition - position;
 
 	// 대상과 길이가 targetInterval 보다 작다면 대상을 향해 이동.
-	if (length.Magnitude() > targetInterval)
+	if (length.Magnitude() > 0)
 	{
 		// 방향 벡터로 변환.
 		Vector2 movePoint = length.Normalized();
@@ -50,9 +72,9 @@ void Monster::Update(float deltaTime)
 		animator.SetPosition(position);
 
 		// 반전 여부 적용.
-		if (movePoint.x > 0.0f)
+		if (movePoint.x > 0.5f)
 			animator.SetFlip(true);
-		else if (movePoint.x < 0.0f)
+		else if (movePoint.x < -0.5f)
 			animator.SetFlip(false);
 
 		// 현재 상태가 이동이 아니라면 이동 상태로 변경.

@@ -86,7 +86,9 @@ ImageText::~ImageText()
 	// º¹»çÇÑ ÀÌ¹ÌÁö°¡ ¾Æ´Ò °æ¿ì µô¸®Æ®.
 	if (!isCopy)
 	{
+		colorList->clear();
 		delete colorList;
+		flipList->clear();
 		delete flipList;
 	}
 }
@@ -104,7 +106,7 @@ void ImageText::SetDrawingPosition(Vector2 drawingPosition)
 	else prevPosition = drawingPosition;
 
 	// µå·ÎÀ× ÁÂÇ¥ °»½Å.
-	this->drawingPosition = drawingPosition - size / 2.0f;
+	this->drawingPosition = Vector2(drawingPosition.x - size.x / 2.0f, drawingPosition.y - size.y);
 }
 
 void ImageText::CreateFlipImage()

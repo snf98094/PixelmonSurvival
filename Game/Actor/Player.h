@@ -36,5 +36,5 @@ private:
 	const char* move = "Move";
 
 	// 플레이어 이동 속도.
-	float speed = 60.0f;
+	float speed = 90.0f;
 };

@@ -32,5 +32,5 @@ protected:
 	vector<Actor*> actors;
 
 	// 추가 요청된 액터.
-	Actor* addRequestedActor = nullptr;
+	vector<Actor*> addRequestedActors;
 };
