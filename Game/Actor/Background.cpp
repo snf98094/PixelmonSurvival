@@ -318,263 +318,263 @@ void Background::Draw()
 void Background::SetBloack()
 {
 	for (int x = 142; x <= 171; x++)
-		for (int y = 0; y <= 494; y++)
+		for (int y = 0; y <= 489; y++)
 			blocks[x][y] = true;
 
 	for (int x = 142; x <= 215; x++)
-		for (int y = 473; y <= 515; y++)
+		for (int y = 478; y <= 510; y++)
 			blocks[x][y] = true;
 
 	for (int x = 185; x <= 215; x++)
-		for (int y = 495; y <= 619; y++)
+		for (int y = 500; y <= 614; y++)
 			blocks[x][y] = true;
 
 	for (int x = 389; x <= 418; x++)
-		for (int y = 0; y <= 87; y++)
+		for (int y = 0; y <= 82; y++)
 			blocks[x][y] = true;
 
 	for (int x = 218; x <= 409; x++)
-		for (int y = 43; y <= 87; y++)
+		for (int y = 48; y <= 82; y++)
 			blocks[x][y] = true;
 
 	for (int x = 218; x <= 247; x++)
-		for (int y = 67; y <= 330; y++)
+		for (int y = 72; y <= 325; y++)
 			blocks[x][y] = true;
 
 	for (int x = 227; x <= 333; x++)
-		for (int y = 300; y <= 330; y++)
+		for (int y = 305; y <= 325; y++)
 			blocks[x][y] = true;
 
 	for (int x = 323; x <= 333; x++)
-		for (int y = 320; y <= 416; y++)
+		for (int y = 325; y <= 411; y++)
 			blocks[x][y] = true;
 
 	for (int x = 313; x <= 805; x++)
-		for (int y = 386; y <= 416; y++)
+		for (int y = 391; y <= 411; y++)
 			blocks[x][y] = true;
 
 	for (int x = 776; x <= 805; x++)
-		for (int y = 396; y <= 516; y++)
+		for (int y = 401; y <= 511; y++)
 			blocks[x][y] = true;
 
 	for (int x = 260; x <= 796; x++)
-		for (int y = 472; y <= 516; y++)
+		for (int y = 477; y <= 511; y++)
 			blocks[x][y] = true;
 
 	for (int x = 260; x <= 290; x++)
-		for (int y = 472; y <= 619; y++)
+		for (int y = 477; y <= 614; y++)
 			blocks[x][y] = true;
 
 	for (int x = 528; x <= 558; x++)
-		for (int y = 0; y <= 105; y++)
+		for (int y = 0; y <= 100; y++)
 			blocks[x][y] = true;
 
 	for (int x = 604; x <= 633; x++)
-		for (int y = 0; y <= 105; y++)
+		for (int y = 0; y <= 100; y++)
 			blocks[x][y] = true;
 
 	for (int x = 829; x <= 859; x++)
-		for (int y = 86; y <= 319; y++)
+		for (int y = 91; y <= 314; y++)
 			blocks[x][y] = true;
 
 	for (int x = 839; x <= 945; x++)
-		for (int y = 86; y <= 115; y++)
+		for (int y = 91; y <= 110; y++)
 			blocks[x][y] = true;
 
 	for (int x = 915; x <= 945; x++)
-		for (int y = 0; y <= 106; y++)
+		for (int y = 0; y <= 101; y++)
 			blocks[x][y] = true;
 
 	for (int x = 906; x <= 934; x++)
-		for (int y = 171; y <= 319; y++)
+		for (int y = 176; y <= 314; y++)
 			blocks[x][y] = true;
 
 	for (int x = 915; x <= 945; x++)
-		for (int y = 171; y <= 516; y++)
+		for (int y = 176; y <= 511; y++)
 			blocks[x][y] = true;
 
 	for (int x = 925; x <= 1009; x++)
-		for (int y = 472; y <= 516; y++)
+		for (int y = 477; y <= 511; y++)
 			blocks[x][y] = true;
 
 	for (int x = 990; x <= 1019; x++)
-		for (int y = 0; y <= 30; y++)
+		for (int y = 0; y <= 25; y++)
 			blocks[x][y] = true;
 
 	for (int x = 990; x <= 1019; x++)
-		for (int y = 86; y <= 516; y++)
+		for (int y = 91; y <= 511; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1000; x <= 1106; x++)
-		for (int y = 0; y <= 30; y++)
+		for (int y = 0; y <= 25; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1000; x <= 1029; x++)
-		for (int y = 86; y <= 233; y++)
+		for (int y = 91; y <= 228; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1076; x <= 1106; x++)
-		for (int y = 10; y <= 233; y++)
+		for (int y = 15; y <= 228; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1000; x <= 1192; x++)
-		for (int y = 257; y <= 302; y++)
+		for (int y = 262; y <= 297; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1162; x <= 1192; x++)
-		for (int y = 0; y <= 277; y++)
+		for (int y = 0; y <= 272; y++)
 			blocks[x][y] = true;
 
 	for (int x = 56; x <= 162; x++)
-		for (int y = 429; y <= 458; y++)
+		for (int y = 434; y <= 453; y++)
 			blocks[x][y] = true;
 
 	for (int x = 56; x <= 86; x++)
-		for (int y = 439; y <= 667; y++)
+		for (int y = 444; y <= 662; y++)
 			blocks[x][y] = true;
 
 	for (int x = 66; x <= 1106; x++)
-		for (int y = 643; y <= 667; y++)
+		for (int y = 648; y <= 662; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1000; x <= 1106; x++)
-		for (int y = 429; y <= 459; y++)
+		for (int y = 434; y <= 454; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1076; x <= 1106; x++)
-		for (int y = 440; y <= 663; y++)
+		for (int y = 445; y <= 658; y++)
 			blocks[x][y] = true;
 
 	for (int x = 228; x <= 418; x++)
-		for (int y = 68; y <= 147; y++)
+		for (int y = 73; y <= 142; y++)
 			blocks[x][y] = true;
 
 	for (int x = 399; x <= 548; x++)
-		for (int y = 0; y <= 61; y++)
+		for (int y = 0; y <= 56; y++)
 			blocks[x][y] = true;
 
 	for (int x = 614; x <= 759; x++)
-		for (int y = 0; y <= 61; y++)
+		for (int y = 0; y <= 56; y++)
 			blocks[x][y] = true;
 
 	for (int x = 832; x <= 934; x++)
-		for (int y = 0; y <= 61; y++)
+		for (int y = 0; y <= 56; y++)
 			blocks[x][y] = true;
 
 	for (int x = 143; x <= 205; x++)
-		for (int y = 496; y <= 576; y++)
+		for (int y = 501; y <= 571; y++)
 			blocks[x][y] = true;
 
 	for (int x = 271; x <= 805; x++)
-		for (int y = 496; y <= 576; y++)
+		for (int y = 501; y <= 571; y++)
 			blocks[x][y] = true;
 
 	for (int x = 915; x <= 1020; x++)
-		for (int y = 496; y <= 576; y++)
+		for (int y = 501; y <= 571; y++)
 			blocks[x][y] = true;
 
 	for (int x = 67; x <= 128; x++)
-		for (int y = 439; y <= 487; y++)
+		for (int y = 444; y <= 482; y++)
 			blocks[x][y] = true;
 
 	for (int x = 111; x <= 162; x++)
-		for (int y = 445; y <= 516; y++)
+		for (int y = 450; y <= 511; y++)
 			blocks[x][y] = true;
 
 	for (int x = 74; x <= 122; x++)
-		for (int y = 617; y <= 657; y++)
+		for (int y = 622; y <= 652; y++)
 			blocks[x][y] = true;
 
 	for (int x = 154; x <= 201; x++)
-		for (int y = 557; y <= 585; y++)
+		for (int y = 562; y <= 580; y++)
 			blocks[x][y] = true;
 
 	for (int x = 158; x <= 196; x++)
-		for (int y = 566; y <= 591; y++)
+		for (int y = 571; y <= 586; y++)
 			blocks[x][y] = true;
 
 	for (int x = 290; x <= 336; x++)
-		for (int y = 128; y <= 157; y++)
+		for (int y = 133; y <= 152; y++)
 			blocks[x][y] = true;
 
 	for (int x = 294; x <= 330; x++)
-		for (int y = 138; y <= 162; y++)
+		for (int y = 143; y <= 157; y++)
 			blocks[x][y] = true;
 
 	for (int x = 276; x <= 329; x++)
-		for (int y = 231; y <= 273; y++)
+		for (int y = 236; y <= 268; y++)
 			blocks[x][y] = true;
 
 	for (int x = 360; x <= 413; x++)
-		for (int y = 179; y <= 221; y++)
+		for (int y = 184; y <= 224; y++)
 			blocks[x][y] = true;
 
 	for (int x = 361; x <= 413; x++)
-		for (int y = 307; y <= 349; y++)
+		for (int y = 312; y <= 344; y++)
 			blocks[x][y] = true;
 
 	for (int x = 491; x <= 545; x++)
-		for (int y = 34; y <= 88; y++)
+		for (int y = 39; y <= 83; y++)
 			blocks[x][y] = true;
 
 	for (int x = 681; x <= 734; x++)
-		for (int y = 34; y <= 85; y++)
+		for (int y = 39; y <= 80; y++)
 			blocks[x][y] = true;
 
 	for (int x = 841; x <= 903; x++)
-		for (int y = 34; y <= 92; y++)
+		for (int y = 39; y <= 87; y++)
 			blocks[x][y] = true;
 
 	for (int x = 606; x <= 667; x++)
-		for (int y = 373; y <= 406; y++)
+		for (int y = 378; y <= 401; y++)
 			blocks[x][y] = true;
 
 	for (int x = 593; x <= 655; x++)
-		for (int y = 219; y <= 264; y++)
+		for (int y = 224; y <= 259; y++)
 			blocks[x][y] = true;
 
 	for (int x = 799; x <= 849; x++)
-		for (int y = 137; y <= 222; y++)
+		for (int y = 142; y <= 217; y++)
 			blocks[x][y] = true;
 
 	for (int x = 548; x <= 608; x++)
-		for (int y = 417; y <= 471; y++)
+		for (int y = 422; y <= 466; y++)
 			blocks[x][y] = true;
 
 	for (int x = 710; x <= 771; x++)
-		for (int y = 417; y <= 471; y++)
+		for (int y = 422; y <= 466; y++)
 			blocks[x][y] = true;
 
 	for (int x = 937; x <= 998; x++)
-		for (int y = 237; y <= 291; y++)
+		for (int y = 242; y <= 286; y++)
 			blocks[x][y] = true;
 
 	for (int x = 937; x <= 998; x++)
-		for (int y = 417; y <= 471; y++)
+		for (int y = 422; y <= 466; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1016; x <= 1077; x++)
-		for (int y = 463; y <= 543; y++)
+		for (int y = 468; y <= 538; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1040; x <= 1088; x++)
-		for (int y = 618; y <= 657; y++)
+		for (int y = 623; y <= 652; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1129; x <= 1176; x++)
-		for (int y = 233; y <= 272; y++)
+		for (int y = 238; y <= 267; y++)
 			blocks[x][y] = true;
 
 	for (int x = 1086; x <= 1137; x++)
-		for (int y = 85; y <= 170; y++)
+		for (int y = 90; y <= 165; y++)
 			blocks[x][y] = true;
 
 	for (int x = 889; x <= 932; x++)
-		for (int y = 510; y <= 553; y++)
+		for (int y = 515; y <= 548; y++)
 			blocks[x][y] = true;
 
 	for (int x = 931; x <= 981; x++)
-		for (int y = 557; y <= 598; y++)
+		for (int y = 562; y <= 593; y++)
 			blocks[x][y] = true;
 }
 
